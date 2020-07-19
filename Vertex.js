@@ -13,7 +13,6 @@ class Vertex {
 		this.background = 'white';
 
 		this.mst = false;
-		this.mstWeight = INFINITY;
 
 		this.edges = [];
 	}
@@ -64,7 +63,6 @@ class Vertex {
 
 	reset() {
 		this.mst = false;
-		this.mstWeight = INFINITY;
 		this.background = 'white';
 		this.color = 'blue';
 		for (let edge of this.edges) {

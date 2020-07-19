@@ -9,7 +9,6 @@ let selectedStartVertex = null;
 const MSTEdgeWeight = 10;
 const MSTEdgeColor = 'red';
 const MSTVertexColor = 'blue';
-const INFINITY = -1;
 let speedMS;
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -62,7 +61,7 @@ function setup() {
 	let div = createDiv('');
 	div.html('Tốc độ', true);
 	div.position(15, 200);
-	speedMS = createInput('3000');
+	speedMS = createInput('5000');
 	speedMS.size(50);
 	speedMS.position(75, 200);
 
@@ -178,12 +177,6 @@ async function PrimMST() {
 		t++ < 30
 	) {
 		let newEdge = neighborhood.pop();
-		while (neighborhood.length > 0 && newEdge.vertexB.mst) {
-			newEdge = neighborhood.pop();
-		}
-		if (newEdge.vertexA.mst && newEdge.vertexB.mst) {
-			break;
-		}
 		MSTEdges.push(newEdge);
 
 		graph.connect(
@@ -214,12 +207,6 @@ async function PrimMST() {
 					'magenta',
 					MSTEdgeWeight / 2
 				);
-				if (
-					edge.vertexB.mstWeight == INFINITY ||
-					edge.weight < edge.vertexB.mstWeight
-				) {
-					edge.vertexB.mstWeight = edge.weight;
-				}
 				neighborhood.push(edge);
 			}
 		}
